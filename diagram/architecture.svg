@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 960" width="1280" height="960" font-family="Helvetica, Arial, sans-serif">
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#232F3E"/></marker>
+<marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7A8691"/></marker>
+<style>
+.t{font-size:13px;font-weight:700;fill:#232F3E}
+.s{font-size:11px;fill:#55606B}
+.g{font-size:12.5px;font-weight:700}
+.l{font-size:11px;fill:#232F3E;font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:4px}
+.h1{font-size:22px;font-weight:700;fill:#232F3E}
+.h2{font-size:13px;fill:#55606B}
+</style></defs>
+<rect width="1280" height="960" fill="#fff"/>
+<text x="40" y="42" class="h1">Scalable Web Application on AWS (ALB + Auto Scaling + RDS Multi-AZ)</text>
+<text x="40" y="64" class="h2">Project 1 · Highly available 3-tier architecture across two Availability Zones · deployed with Terraform</text>
+<g transform="translate(62,190)"><circle cx="22" cy="12" r="12" fill="#232F3E"/><path d="M0,52 C0,30 44,30 44,52 z" fill="#232F3E"/></g>
+<text x="84" y="262" class="t" text-anchor="middle">Users</text>
+<rect x="160" y="82" width="1095" height="858" rx="8" fill="none" stroke="#232F3E" stroke-width="1.4"/>
+<text x="172" y="102" class="g" fill="#232F3E">AWS Cloud</text>
+<rect x="250" y="104" width="190" height="58" rx="6" fill="#fff" stroke="#8C4FFF" stroke-width="1.6"/>
+<rect x="250" y="104" width="6" height="58" rx="3" fill="#8C4FFF"/>
+<text x="266" y="129.0" class="t">Amazon Route 53</text>
+<text x="266" y="146.0" class="s">Alias A record + health check</text>
+<rect x="760" y="104" width="200" height="58" rx="6" fill="#fff" stroke="#8C4FFF" stroke-width="1.6"/>
+<rect x="760" y="104" width="6" height="58" rx="3" fill="#8C4FFF"/>
+<text x="776" y="129.0" class="t">Amazon CloudFront</text>
+<text x="776" y="146.0" class="s">CDN for /static/* (OAC)</text>
+<rect x="180" y="182" width="1060" height="744" rx="8" fill="none" stroke="#147EBA" stroke-width="1.4" stroke-dasharray="7 4"/>
+<text x="192" y="202" class="g" fill="#147EBA">Region: us-east-1</text>
+<rect x="520" y="204" width="180" height="52" rx="6" fill="#fff" stroke="#DD344C" stroke-width="1.6"/>
+<rect x="520" y="204" width="6" height="52" rx="3" fill="#DD344C"/>
+<text x="536" y="226.0" class="t">AWS WAF</text>
+<text x="536" y="243.0" class="s">Managed rules + rate limit</text>
+<rect x="200" y="290" width="790" height="620" rx="8" fill="none" stroke="#8C4FFF" stroke-width="1.4"/>
+<text x="212" y="310" class="g" fill="#8C4FFF">VPC 10.0.0.0/16</text>
+<rect x="572" y="275" width="76" height="30" rx="6" fill="#fff" stroke="#8C4FFF" stroke-width="1.6"/>
+<text x="610" y="294" class="t" text-anchor="middle" style="font-size:12px">IGW</text>
+<rect x="215" y="318" width="375" height="580" rx="8" fill="none" stroke="#147EBA" stroke-width="1.4" stroke-dasharray="4 4"/>
+<text x="227" y="338" class="g" fill="#147EBA">Availability Zone A</text>
+<rect x="605" y="318" width="370" height="580" rx="8" fill="none" stroke="#147EBA" stroke-width="1.4" stroke-dasharray="4 4"/>
+<text x="617" y="338" class="g" fill="#147EBA">Availability Zone B</text>
+<rect x="228" y="345" width="350" height="100" rx="8" fill="#F2F8EE" stroke="#3F8624" stroke-width="1.4"/>
+<text x="240" y="365" class="g" fill="#3F8624">Public subnet 10.0.0.0/24</text>
+<rect x="617" y="345" width="346" height="100" rx="8" fill="#F2F8EE" stroke="#3F8624" stroke-width="1.4"/>
+<text x="629" y="365" class="g" fill="#3F8624">Public subnet 10.0.1.0/24</text>
+<rect x="228" y="462" width="350" height="170" rx="8" fill="#EEF5FB" stroke="#147EBA" stroke-width="1.4"/>
+<text x="240" y="482" class="g" fill="#147EBA">Private app subnet 10.0.10.0/24</text>
+<rect x="617" y="462" width="346" height="170" rx="8" fill="#EEF5FB" stroke="#147EBA" stroke-width="1.4"/>
+<text x="629" y="482" class="g" fill="#147EBA">Private app subnet 10.0.11.0/24</text>
+<rect x="228" y="650" width="350" height="235" rx="8" fill="#F1F3FA" stroke="#2E4A8C" stroke-width="1.4"/>
+<text x="240" y="670" class="g" fill="#2E4A8C">Private DB subnet 10.0.20.0/24</text>
+<rect x="617" y="650" width="346" height="235" rx="8" fill="#F1F3FA" stroke="#2E4A8C" stroke-width="1.4"/>
+<text x="629" y="670" class="g" fill="#2E4A8C">Private DB subnet 10.0.21.0/24</text>
+<rect x="248" y="375" width="140" height="52" rx="6" fill="#fff" stroke="#8C4FFF" stroke-width="1.6"/>
+<rect x="248" y="375" width="6" height="52" rx="3" fill="#8C4FFF"/>
+<text x="264" y="397.0" class="t">NAT Gateway</text>
+<text x="264" y="414.0" class="s">+ Elastic IP</text>
+<rect x="810" y="375" width="140" height="52" rx="6" fill="#fff" stroke="#8C4FFF" stroke-width="1.6" stroke-dasharray="6 4"/>
+<rect x="810" y="375" width="6" height="52" rx="3" fill="#8C4FFF"/>
+<text x="826" y="397.0" class="t">NAT Gateway</text>
+<text x="826" y="414.0" class="s">optional (per-AZ)</text>
+<rect x="500" y="372" width="220" height="58" rx="6" fill="#fff" stroke="#8C4FFF" stroke-width="1.6"/>
+<rect x="500" y="372" width="6" height="58" rx="3" fill="#8C4FFF"/>
+<text x="516" y="397.0" class="t">Application Load Balancer</text>
+<text x="516" y="414.0" class="s">HTTP/HTTPS · /admin* → 403</text>
+<rect x="240" y="490" width="712" height="130" rx="8" fill="none" stroke="#ED7100" stroke-width="1.6" stroke-dasharray="7 4"/>
+<text x="425" y="510" class="g" fill="#B25500">Auto Scaling Group · min 2 / max 4</text>
+<rect x="262" y="530" width="140" height="60" rx="6" fill="#fff" stroke="#ED7100" stroke-width="1.6"/>
+<rect x="262" y="530" width="6" height="60" rx="3" fill="#ED7100"/>
+<text x="278" y="556.0" class="t">EC2 (AL2023)</text>
+<text x="278" y="573.0" class="s">Apache + PHP</text>
+<rect x="420" y="530" width="140" height="60" rx="6" fill="#fff" stroke="#ED7100" stroke-width="1.6" stroke-dasharray="6 4"/>
+<rect x="420" y="530" width="6" height="60" rx="3" fill="#ED7100"/>
+<text x="436" y="556.0" class="t">EC2</text>
+<text x="436" y="573.0" class="s">scale-out</text>
+<rect x="650" y="530" width="140" height="60" rx="6" fill="#fff" stroke="#ED7100" stroke-width="1.6"/>
+<rect x="650" y="530" width="6" height="60" rx="3" fill="#ED7100"/>
+<text x="666" y="556.0" class="t">EC2 (AL2023)</text>
+<text x="666" y="573.0" class="s">Apache + PHP</text>
+<rect x="808" y="530" width="135" height="60" rx="6" fill="#fff" stroke="#ED7100" stroke-width="1.6" stroke-dasharray="6 4"/>
+<rect x="808" y="530" width="6" height="60" rx="3" fill="#ED7100"/>
+<text x="824" y="556.0" class="t">EC2</text>
+<text x="824" y="573.0" class="s">scale-out</text>
+<rect x="300" y="730" width="200" height="66" rx="6" fill="#fff" stroke="#C925D1" stroke-width="1.6"/>
+<rect x="300" y="730" width="6" height="66" rx="3" fill="#C925D1"/>
+<text x="316" y="759.0" class="t">RDS MySQL (Primary)</text>
+<text x="316" y="776.0" class="s">Encrypted · automated backups</text>
+<rect x="690" y="730" width="200" height="66" rx="6" fill="#fff" stroke="#C925D1" stroke-width="1.6" stroke-dasharray="6 4"/>
+<rect x="690" y="730" width="6" height="66" rx="3" fill="#C925D1"/>
+<text x="706" y="759.0" class="t">RDS MySQL (Standby)</text>
+<text x="706" y="776.0" class="s">Multi-AZ · auto failover</text>
+<text x="1012" y="310" class="g" fill="#147EBA">Regional services</text>
+<rect x="1005" y="322" width="220" height="58" rx="6" fill="#fff" stroke="#3F8624" stroke-width="1.6"/>
+<rect x="1005" y="322" width="6" height="58" rx="3" fill="#3F8624"/>
+<text x="1021" y="347.0" class="t">Amazon S3</text>
+<text x="1021" y="364.0" class="s">Private static-assets bucket</text>
+<rect x="1005" y="402" width="220" height="58" rx="6" fill="#fff" stroke="#DD344C" stroke-width="1.6"/>
+<rect x="1005" y="402" width="6" height="58" rx="3" fill="#DD344C"/>
+<text x="1021" y="427.0" class="t">Secrets Manager</text>
+<text x="1021" y="444.0" class="s">RDS-managed DB password</text>
+<rect x="1005" y="482" width="220" height="58" rx="6" fill="#fff" stroke="#E7157B" stroke-width="1.6"/>
+<rect x="1005" y="482" width="6" height="58" rx="3" fill="#E7157B"/>
+<text x="1021" y="507.0" class="t">Systems Manager</text>
+<text x="1021" y="524.0" class="s">Session Manager (no SSH)</text>
+<rect x="1005" y="562" width="220" height="58" rx="6" fill="#fff" stroke="#E7157B" stroke-width="1.6"/>
+<rect x="1005" y="562" width="6" height="58" rx="3" fill="#E7157B"/>
+<text x="1021" y="587.0" class="t">Amazon CloudWatch</text>
+<text x="1021" y="604.0" class="s">Dashboard · alarms · metrics</text>
+<rect x="1005" y="642" width="220" height="58" rx="6" fill="#fff" stroke="#E7157B" stroke-width="1.6"/>
+<rect x="1005" y="642" width="6" height="58" rx="3" fill="#E7157B"/>
+<text x="1021" y="667.0" class="t">Amazon SNS</text>
+<text x="1021" y="684.0" class="s">Email notifications</text>
+<rect x="1005" y="722" width="220" height="58" rx="6" fill="#fff" stroke="#DD344C" stroke-width="1.6"/>
+<rect x="1005" y="722" width="6" height="58" rx="3" fill="#DD344C"/>
+<text x="1021" y="747.0" class="t">AWS IAM</text>
+<text x="1021" y="764.0" class="s">Least-privilege instance role</text>
+<rect x="1005" y="802" width="220" height="58" rx="6" fill="#fff" stroke="#DD344C" stroke-width="1.6"/>
+<rect x="1005" y="802" width="6" height="58" rx="3" fill="#DD344C"/>
+<text x="1021" y="827.0" class="t">AWS Certificate Manager</text>
+<text x="1021" y="844.0" class="s">TLS cert for the ALB (optional)</text>
+<path d="M110,205 L248,140" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="170" y="162" class="l" text-anchor="middle">1 DNS</text>
+<path d="M110,232 L518,232" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="300" y="226" class="l" text-anchor="middle">2 HTTPS</text>
+<path d="M610,256 L610,275" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M610,305 L610,370" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M110,218 L232,174 L860,174 L860,164" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="470" y="178" class="l" text-anchor="middle">3 static assets</text>
+<path d="M960,133 L1115,133 L1115,320" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="1040" y="128" class="l" text-anchor="middle">OAC</text>
+<path d="M430,163 L512,370" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<text x="462" y="268" class="l" text-anchor="middle">alias</text>
+<path d="M560,431 L332,528" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M660,431 L720,528" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M332,591 L380,728" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<path d="M720,591 L470,728" fill="none" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="620" y="700" class="l" text-anchor="middle">MySQL 3306 (TLS)</text>
+<path d="M502,763 L688,763" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<path d="M688,763 L502,763" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<text x="595" y="755" class="l" text-anchor="middle">synchronous replication</text>
+<path d="M290,528 L300,429" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<path d="M388,392 L452,392 L452,290 L570,290" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<text x="537" y="304" class="l" text-anchor="middle">egress via NAT</text>
+<path d="M952,548 L1003,511" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<path d="M952,535 L1003,431" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<path d="M952,575 L1003,591" fill="none" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<path d="M1115,621 L1115,640" fill="none" stroke="#7A8691" stroke-width="1.8" marker-end="url(#arrg)"/>
+<line x1="180" y1="948" x2="220" y2="948" stroke="#232F3E" stroke-width="1.8" marker-end="url(#arr)"/>
+<text x="228" y="952" class="s">Request flow</text>
+<line x1="330" y1="948" x2="370" y2="948" stroke="#7A8691" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrg)"/>
+<text x="378" y="952" class="s">Management, egress, replication</text>
+<rect x="560" y="939" width="40" height="16" rx="4" fill="#fff" stroke="#ED7100" stroke-dasharray="6 4"/>
+<text x="608" y="952" class="s">Created on demand / optional</text>
+</svg>
