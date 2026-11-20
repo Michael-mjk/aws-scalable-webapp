@@ -1,0 +1,72 @@
+#!/bin/bash
+# Bootstrap for the web tier (rendered by Terraform templatefile()).
+# Amazon Linux 2023 ships with the SSM Agent and AWS CLI preinstalled.
+set -euo pipefail
+exec > >(tee -a /var/log/user-data.log) 2>&1
+echo "=== bootstrap start: $(date -Is) ==="
+
+# --- Packages: Apache + PHP-FPM + MySQL driver -------------------------------
+dnf install -y httpd php php-fpm php-mysqli php-json
+
+# --- RDS CA bundle so PHP can verify the database's TLS certificate ----------
+mkdir -p /etc/pki/rds
+curl -fsSL --retry 5 --retry-delay 3 \
+  -o /etc/pki/rds/global-bundle.pem \
+  https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+
+# --- Instance identity via IMDSv2 ---------------------------------------------
+TOKEN=$(curl -fsS -X PUT "http://169.254.169.254/latest/api/token" \
+  -H "X-aws-ec2-metadata-token-ttl-seconds: 300")
+INSTANCE_ID=$(curl -fsS -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/instance-id)
+AZ=$(curl -fsS -H "X-aws-ec2-metadata-token: $TOKEN" \
+  http://169.254.169.254/latest/meta-data/placement/availability-zone)
+
+# --- Application code -----------------------------------------------------------
+APP_DIR=/var/www/html
+echo "${index_php}"  | base64 -d > "$APP_DIR/index.php"
+echo "${lib_php}"    | base64 -d > "$APP_DIR/lib.php"
+echo "${health_php}" | base64 -d > "$APP_DIR/health.php"
+
+# Non-secret settings only. The DB password is fetched at runtime from
+# Secrets Manager by the app (see lib.php) and is never written here.
+cat > "$APP_DIR/config.php" <<EOF
+<?php
+return [
+    'region'      => '${aws_region}',
+    'db_host'     => '${db_host}',
+    'db_port'     => ${db_port},
+    'db_name'     => '${db_name}',
+    'secret_arn'  => '${db_secret_arn}',
+    'cdn_url'     => 'https://${cdn_domain}',
+    'instance_id' => '$INSTANCE_ID',
+    'az'          => '$AZ',
+];
+EOF
+
+chown root:apache "$APP_DIR"/*.php
+chmod 644 "$APP_DIR/index.php" "$APP_DIR/lib.php" "$APP_DIR/health.php"
+chmod 640 "$APP_DIR/config.php"
+
+# Private cache for the credentials fetched from Secrets Manager
+install -d -o apache -g apache -m 700 /var/cache/webapp
+
+# --- Apache hardening -------------------------------------------------------------
+cat > /etc/httpd/conf.d/zz-hardening.conf <<'EOF'
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+<Directory "/var/www/html">
+    Options -Indexes
+    AllowOverride None
+</Directory>
+<Files "config.php">
+    Require all denied
+</Files>
+<Files "lib.php">
+    Require all denied
+</Files>
+EOF
+
+systemctl enable --now php-fpm httpd
+echo "=== bootstrap done: $(date -Is) ==="
