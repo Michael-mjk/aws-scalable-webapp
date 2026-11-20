@@ -1,0 +1,150 @@
+:root {
+  --paper: #EEF1EF;
+  --surface: #F8FAF9;
+  --ink: #13232D;
+  --muted: #56666E;
+  --rule: #CBD4D2;
+  --zone: #45606B;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0F1A20;
+    --surface: #15232B;
+    --ink: #E4EAE8;
+    --muted: #93A4AB;
+    --rule: #2A3B43;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1rem/1.55 var(--sans);
+}
+
+/* The one loud element: a band whose colour is the serving Availability Zone */
+.zone-band {
+  height: 10px;
+  background: var(--zone);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 0;
+}
+
+.brand { font-weight: 600; letter-spacing: .01em; }
+
+main {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero {
+  padding: 3.5rem 0 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.lead { margin: 0; color: var(--muted); font-size: 1.125rem; }
+
+.instance {
+  margin: .25rem 0 .5rem;
+  font: 500 clamp(1.5rem, 7.2vw, 4.5rem)/1.05 var(--mono);
+  letter-spacing: -.02em;
+  color: var(--zone);
+  word-break: break-all;
+}
+
+.zone { margin: 0; font-size: 1.375rem; }
+.zone strong { font-weight: 600; }
+
+.hint {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+}
+
+.notice {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #B3261E;
+  background: var(--surface);
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 2.5rem 0 3rem;
+}
+
+h2 { margin: 0 0 .25rem; font-size: 1.125rem; font-weight: 600; }
+
+.total { margin: 0 0 1.25rem; color: var(--muted); }
+
+.servers ul { list-style: none; margin: 0; padding: 0; }
+
+.servers li {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: .75rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.id { font-family: var(--mono); font-size: .875rem; }
+.az { color: var(--muted); font-size: .875rem; }
+
+.bar {
+  height: 8px;
+  background: var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar span { display: block; height: 100%; background: var(--zone-row, var(--zone)); }
+
+.hits { font-variant-numeric: tabular-nums; min-width: 3ch; text-align: right; }
+
+.recent h2 { margin-bottom: 1.25rem; }
+
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+th { white-space: nowrap; text-align: left; font-weight: 600; color: var(--muted); padding: 0 .75rem .5rem 0; }
+td { white-space: nowrap; padding: .5rem .75rem .5rem 0; border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+
+.dot {
+  display: inline-block;
+  width: .6rem;
+  height: .6rem;
+  margin-right: .45rem;
+  border-radius: 50%;
+}
+
+footer {
+  width: min(61rem, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .875rem;
+}
+
+@media (max-width: 720px) {
+  .ledger { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero { padding: 2.5rem 0 2rem; }
+  table { font-size: .8125rem; }
+  .servers .id { font-size: .8125rem; }
+}
